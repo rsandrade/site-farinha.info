@@ -101,9 +101,9 @@
             scrollbar-width: none;
         }
 
-        /* Carousel smooth scrolling */
-        .carousel-container {
-            scroll-behavior: smooth;
+        /* Carousel */
+        .carousel-track {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Smooth fade for images */
@@ -122,12 +122,7 @@
 
         /* Button interactions */
         button {
-            transition: all 0.2s ease;
             position: relative;
-        }
-
-        button:active {
-            transform: scale(0.98);
         }
 
         /* Link transitions */
@@ -221,10 +216,11 @@
 </button>
 
 <!-- Carousel Container -->
-<div class="carousel-container flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-8 pb-12">
+<div class="overflow-hidden rounded-3xl">
+<div class="carousel-track flex">
 <!-- Slide 1 -->
-<div class="flex-none w-full snap-center">
-<div class="relative h-[600px] rounded-3xl overflow-hidden group">
+<div class="flex-none w-full">
+<div class="relative h-[600px]">
 <img class="w-full h-full object-cover" alt="Carrossel 1" src="./img/carrossel1.png"/>
 <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
 <div class="max-w-2xl">
@@ -236,8 +232,8 @@
 </div>
 </div>
 <!-- Slide 2 -->
-<div class="flex-none w-full snap-center">
-<div class="relative h-[600px] rounded-3xl overflow-hidden">
+<div class="flex-none w-full">
+<div class="relative h-[600px]">
 <img class="w-full h-full object-cover" alt="Carrossel 2" src="./img/carrossel2.png"/>
 <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
 <div class="max-w-2xl">
@@ -249,9 +245,9 @@
 </div>
 </div>
 <!-- Slide 3 -->
-<div class="flex-none w-full snap-center">
-<div class="relative h-[600px] rounded-3xl overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Digital interface showing high-resolution gallery of historical photographs and digital media assets in a modern web view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMkn6otJQWPNrb82XCAof6k8WAfxnvWoo7KwFL73mjafStATVuVrZEvWWyxNF7d07ueL2DJFXQUwnZW8uzKQSXT5lbzRBrGGYG56jQtLb3SraPYuGNk3hqZyl8VLkGehDoPJbmsJiEv4QPUllybASDW43QoChO6EjBFsICamNXJljQvCEF10k3-IXt5yOXRqmMt5RrUsXPBIiPuXAdIJisIjdKg_9PGCgJcO0QKD0rWm1me-y-UOxIw6lLS_d1IVsZ1roAA9DLsNcD"/>
+<div class="flex-none w-full">
+<div class="relative h-[600px]">
+<img class="w-full h-full object-cover" alt="Objetos Digitais" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMkn6otJQWPNrb82XCAof6k8WAfxnvWoo7KwFL73mjafStATVuVrZEvWWyxNF7d07ueL2DJFXQUwnZW8uzKQSXT5lbzRBrGGYG56jQtLb3SraPYuGNk3hqZyl8VLkGehDoPJbmsJiEv4QPUllybASDW43QoChO6EjBFsICamNXJljQvCEF10k3-IXt5yOXRqmMt5RrUsXPBIiPuXAdIJisIjdKg_9PGCgJcO0QKD0rWm1me-y-UOxIw6lLS_d1IVsZ1roAA9DLsNcD"/>
 <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
 <div class="max-w-2xl">
 <span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">OBJETOS DIGITAIS</span>
@@ -262,14 +258,15 @@
 </div>
 </div>
 <!-- Slide 4 -->
-<div class="flex-none w-full snap-center">
-<div class="relative h-[600px] rounded-3xl overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Minimalist architectural server room with clean teal lighting representing modern IT infrastructure and easy deployment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0OQmGteYH80VSXJc-kRl56RrvZ3XGcLNxaQ5dfSosP_052FxL_Ka2vE3_m4wJx81dktddkknUDsx-AgvbGDKW3Fb-J3pnSS2-NqaBjg2_TqQ3DrtRiAivrJJ6ailJdnYx-s1tjSIqlKRtCi6kHC-PVQ2jYS1m16ZFJjkLbJ-jqD8ARFptS50RhJkx8ALNvr4KZH5EyWjNoOnKC57F_5QwPKVKwEW30QO-tPWD7CnCF2SgpkLRGUHlgoUP3HZQHLpDxqJzx0ccZY6w"/>
+<div class="flex-none w-full">
+<div class="relative h-[600px]">
+<img class="w-full h-full object-cover" alt="Fácil Implantação" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0OQmGteYH80VSXJc-kRl56RrvZ3XGcLNxaQ5dfSosP_052FxL_Ka2vE3_m4wJx81dktddkknUDsx-AgvbGDKW3Fb-J3pnSS2-NqaBjg2_TqQ3DrtRiAivrJJ6ailJdnYx-s1tjSIqlKRtCi6kHC-PVQ2jYS1m16ZFJjkLbJ-jqD8ARFptS50RhJkx8ALNvr4KZH5EyWjNoOnKC57F_5QwPKVKwEW30QO-tPWD7CnCF2SgpkLRGUHlgoUP3HZQHLpDxqJzx0ccZY6w"/>
 <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
 <div class="max-w-2xl">
 <span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">FÁCIL IMPLANTAÇÃO</span>
 <h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight">Uma instalação, muitas instituições.</h2>
 <p class="text-white/90 mt-6 text-lg md:text-xl font-light">Cadastre diversos lugares e atribua equipes autônomas em uma única infraestrutura.</p>
+</div>
 </div>
 </div>
 </div>
@@ -523,68 +520,27 @@
 
 <script>
     // Carousel functionality
-    const carousel = document.querySelector('.carousel-container');
-    if (carousel) {
-        let currentSlide = 0;
-        const slides = carousel.children.length;
-        let autoScrollInterval;
-        let isUserInteracting = false;
+    const track = document.querySelector('.carousel-track');
+    if (track) {
+        const slides = track.children.length;
+        let current = 0;
+        let autoTimer;
 
-        // Function to scroll to a specific slide
-        function scrollToSlide(slideIndex) {
-            currentSlide = slideIndex % slides;
-            carousel.scrollTo({
-                left: carousel.offsetWidth * currentSlide,
-                behavior: 'smooth'
-            });
-            updateDots();
-        }
-
-        // Function to go to next slide
-        function nextSlide() {
-            scrollToSlide(currentSlide + 1);
-            isUserInteracting = true;
-            resetAutoScroll();
-        }
-
-        // Function to go to previous slide
-        function prevSlide() {
-            scrollToSlide(currentSlide - 1 < 0 ? slides - 1 : currentSlide - 1);
-            isUserInteracting = true;
-            resetAutoScroll();
-        }
-
-        // Update active dot
-        function updateDots() {
-            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-                if (index === currentSlide) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
+        function goTo(n) {
+            current = (n + slides) % slides;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === current);
             });
         }
 
-        // Reset auto-scroll timer
-        function resetAutoScroll() {
-            clearInterval(autoScrollInterval);
-            autoScrollInterval = setTimeout(startAutoScroll, 3000); // Resume after 3s of no interaction
+        function startAuto() {
+            autoTimer = setInterval(() => goTo(current + 1), 8000);
         }
 
-        // Auto-scroll function
-        function autoScroll() {
-            currentSlide = (currentSlide + 1) % slides;
-            carousel.scrollTo({
-                left: carousel.offsetWidth * currentSlide,
-                behavior: 'smooth'
-            });
-            updateDots();
-        }
-
-        // Start auto-scroll
-        function startAutoScroll() {
-            autoScrollInterval = setInterval(autoScroll, 8000);
-            isUserInteracting = false;
+        function resetAuto() {
+            clearInterval(autoTimer);
+            setTimeout(startAuto, 3000);
         }
 
         // Arrow button handlers
@@ -594,37 +550,30 @@
         if (nextBtn) {
             nextBtn.addEventListener('click', function() {
                 this.blur();
-                nextSlide();
+                goTo(current + 1);
+                resetAuto();
             });
         }
         if (prevBtn) {
             prevBtn.addEventListener('click', function() {
                 this.blur();
-                prevSlide();
+                goTo(current - 1);
+                resetAuto();
             });
         }
 
         // Dot button handlers
         document.querySelectorAll('.carousel-dot').forEach(dot => {
             dot.addEventListener('click', function() {
-                const slideIndex = parseInt(this.getAttribute('data-slide'));
-                scrollToSlide(slideIndex);
-                isUserInteracting = true;
-                resetAutoScroll();
+                this.blur();
+                goTo(parseInt(this.getAttribute('data-slide')));
+                resetAuto();
             });
         });
 
-        // Update dots on scroll
-        carousel.addEventListener('scroll', () => {
-            const scrollPosition = carousel.scrollLeft;
-            const slideWidth = carousel.offsetWidth;
-            currentSlide = Math.round(scrollPosition / slideWidth);
-            updateDots();
-        });
-
         // Initial setup
-        updateDots();
-        startAutoScroll();
+        goTo(0);
+        startAuto();
     }
 
     // Smooth scroll to section on nav click
