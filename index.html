@@ -592,10 +592,16 @@
         const prevBtn = document.querySelector('.carousel-btn-prev');
 
         if (nextBtn) {
-            nextBtn.addEventListener('click', nextSlide);
+            nextBtn.addEventListener('click', function() {
+                this.blur();
+                nextSlide();
+            });
         }
         if (prevBtn) {
-            prevBtn.addEventListener('click', prevSlide);
+            prevBtn.addEventListener('click', function() {
+                this.blur();
+                prevSlide();
+            });
         }
 
         // Dot button handlers
