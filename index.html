@@ -165,18 +165,16 @@
         /* Carousel Controls */
         .carousel-btn {
             opacity: 0;
-            transition: opacity 0.3s ease, transform 0.2s ease;
+            transition: opacity 0.3s ease;
         }
 
         .carousel-container:hover ~ .carousel-btn-next,
         .carousel-container:hover ~ .carousel-btn-prev,
         section:hover .carousel-btn-prev,
-        section:hover .carousel-btn-next {
+        section:hover .carousel-btn-next,
+        .carousel-btn:hover,
+        .carousel-btn:focus {
             opacity: 1;
-        }
-
-        .carousel-btn:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
         }
 
         /* Carousel Dots */
@@ -223,7 +221,7 @@
 <!-- Carousel Wrapper -->
 <div class="relative">
 <!-- Left Arrow -->
-<button class="carousel-btn carousel-btn-prev absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-all shadow-md flex items-center justify-center text-primary hover:text-primary/80 -translate-x-6 md:-translate-x-20" aria-label="Slide anterior">
+<button class="carousel-btn carousel-btn-prev absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80 -translate-x-6 md:-translate-x-20" aria-label="Slide anterior">
 <span class="material-symbols-outlined text-2xl">chevron_left</span>
 </button>
 
@@ -284,7 +282,7 @@
 </div>
 
 <!-- Right Arrow -->
-<button class="carousel-btn carousel-btn-next absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-all shadow-md flex items-center justify-center text-primary hover:text-primary/80 translate-x-6 md:translate-x-20" aria-label="Próximo slide">
+<button class="carousel-btn carousel-btn-next absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80 translate-x-6 md:translate-x-20" aria-label="Próximo slide">
 <span class="material-symbols-outlined text-2xl">chevron_right</span>
 </button>
 
