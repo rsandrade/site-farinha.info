@@ -210,13 +210,17 @@
 <div class="max-w-7xl mx-auto px-8">
 <!-- Carousel Wrapper -->
 <div class="relative">
-<!-- Left Arrow -->
-<button class="carousel-btn carousel-btn-prev absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80 -translate-x-6 md:-translate-x-20" aria-label="Slide anterior">
-<span class="material-symbols-outlined text-2xl">chevron_left</span>
-</button>
 
 <!-- Carousel Container -->
-<div class="overflow-hidden rounded-3xl">
+<div class="overflow-hidden rounded-3xl relative">
+<!-- Left Arrow -->
+<button class="carousel-btn carousel-btn-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Slide anterior">
+<span class="material-symbols-outlined text-2xl">chevron_left</span>
+</button>
+<!-- Right Arrow -->
+<button class="carousel-btn carousel-btn-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Próximo slide">
+<span class="material-symbols-outlined text-2xl">chevron_right</span>
+</button>
 <div class="carousel-track flex">
 <!-- Slide 1 -->
 <div class="flex-none w-full">
@@ -272,11 +276,6 @@
 </div>
 </div>
 </div>
-
-<!-- Right Arrow -->
-<button class="carousel-btn carousel-btn-next absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80 translate-x-6 md:translate-x-20" aria-label="Próximo slide">
-<span class="material-symbols-outlined text-2xl">chevron_right</span>
-</button>
 
 <!-- Carousel Indicators (Dots) -->
 <div class="flex justify-center gap-2 mt-8">
