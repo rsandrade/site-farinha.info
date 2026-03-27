@@ -42,7 +42,6 @@
               "on-tertiary": "#ffffff",
               "on-primary-container": "#004246",
               "surface-container-lowest": "#ffffff",
-              "surface": "#fbf9f8",
               "surface-container-high": "#eae8e7",
               "on-error-container": "#93000a",
               "outline": "#6e797a",
@@ -183,6 +182,26 @@
             background-color: #4db3bc;
         }
 
+        /* Language switcher */
+        .lang-btn {
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #6e797a;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: color 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            color: #006970;
+        }
+
+        .lang-btn-active {
+            color: #006970;
+            font-weight: 800;
+        }
+
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
@@ -193,15 +212,26 @@
 <img src="./img/logo.svg" alt="Farinha" class="h-8 w-auto"/>
 </div>
 <div class="hidden md:flex items-center gap-12">
-<a class="nav-link text-primary font-semibold font-headline text-sm tracking-tight" href="#inicio">Início</a>
-<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#atuacao">Características</a>
-<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#objetos">Objetos Digitais</a>
-<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#equipe">Equipe</a>
-<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#contato">Contato</a>
+<a class="nav-link text-primary font-semibold font-headline text-sm tracking-tight" href="#inicio" data-i18n="nav_inicio">Início</a>
+<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#atuacao" data-i18n="nav_caracteristicas">Características</a>
+<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#objetos" data-i18n="nav_objetos">Objetos Digitais</a>
+<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#equipe" data-i18n="nav_equipe">Equipe</a>
+<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#contato" data-i18n="nav_contato">Contato</a>
 </div>
-<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full font-headline text-sm font-medium transition-all duration-200">
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-1">
+<button class="lang-btn lang-btn-active" data-lang="pt" onclick="setLanguage('pt')">PT</button>
+<span class="text-outline/40 text-xs">|</span>
+<button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+<span class="text-outline/40 text-xs">|</span>
+<button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+<span class="text-outline/40 text-xs">|</span>
+<button class="lang-btn" data-lang="ro" onclick="setLanguage('ro')">RO</button>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full font-headline text-sm font-medium transition-all duration-200" data-i18n="btn_download">
                 Download
             </button>
+</div>
 </nav>
 </header>
 <main>
@@ -222,9 +252,9 @@
 <img class="w-full h-full object-cover" alt="Carrossel 1" src="./img/carrossel1.png"/>
 <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
 <div class="max-w-2xl">
-<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">O FARINHA</span>
-<h1 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight">Software livre para instituições que possuem arquivos permanentes e memoriais.</h1>
-<p class="text-white/90 mt-6 text-lg md:text-xl font-light">Desenvolvido para facilitar a gestão de acervos de valor histórico com precisão técnica.</p>
+<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4" data-i18n="slide1_badge">O FARINHA</span>
+<h1 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight" data-i18n="slide1_h1">Software livre para instituições que possuem arquivos permanentes e memoriais.</h1>
+<p class="text-white/90 mt-6 text-lg md:text-xl font-light" data-i18n="slide1_p">Desenvolvido para facilitar a gestão de acervos de valor histórico com precisão técnica.</p>
 </div>
 </div>
 </div>
@@ -235,9 +265,9 @@
 <img class="w-full h-full object-cover" alt="Carrossel 2" src="./img/carrossel2.png"/>
 <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
 <div class="max-w-2xl">
-<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">FUNDOS E COLEÇÕES</span>
-<h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight">Use a Nobrade (ou não).</h2>
-<p class="text-white/90 mt-6 text-lg md:text-xl font-light">Não desperdice o legado de arranjos e descrições. Avance com boas práticas e flexibilidade estrutural.</p>
+<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4" data-i18n="slide2_badge">FUNDOS E COLEÇÕES</span>
+<h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight" data-i18n="slide2_h2">Use a Nobrade (ou não).</h2>
+<p class="text-white/90 mt-6 text-lg md:text-xl font-light" data-i18n="slide2_p">Não desperdice o legado de arranjos e descrições. Avance com boas práticas e flexibilidade estrutural.</p>
 </div>
 </div>
 </div>
@@ -248,9 +278,9 @@
 <img class="w-full h-full object-cover" alt="Objetos Digitais" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMkn6otJQWPNrb82XCAof6k8WAfxnvWoo7KwFL73mjafStATVuVrZEvWWyxNF7d07ueL2DJFXQUwnZW8uzKQSXT5lbzRBrGGYG56jQtLb3SraPYuGNk3hqZyl8VLkGehDoPJbmsJiEv4QPUllybASDW43QoChO6EjBFsICamNXJljQvCEF10k3-IXt5yOXRqmMt5RrUsXPBIiPuXAdIJisIjdKg_9PGCgJcO0QKD0rWm1me-y-UOxIw6lLS_d1IVsZ1roAA9DLsNcD"/>
 <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
 <div class="max-w-2xl">
-<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">OBJETOS DIGITAIS</span>
-<h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight">Acesse os documentos do acervo.</h2>
-<p class="text-white/90 mt-6 text-lg md:text-xl font-light">Adicione objetos digitais, sejam eles imagéticos, sonoros ou audiovisuais em alta performance.</p>
+<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4" data-i18n="slide3_badge">OBJETOS DIGITAIS</span>
+<h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight" data-i18n="slide3_h2">Acesse os documentos do acervo.</h2>
+<p class="text-white/90 mt-6 text-lg md:text-xl font-light" data-i18n="slide3_p">Adicione objetos digitais, sejam eles imagéticos, sonoros ou audiovisuais em alta performance.</p>
 </div>
 </div>
 </div>
@@ -261,30 +291,30 @@
 <img class="w-full h-full object-cover" alt="Fácil Implantação" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0OQmGteYH80VSXJc-kRl56RrvZ3XGcLNxaQ5dfSosP_052FxL_Ka2vE3_m4wJx81dktddkknUDsx-AgvbGDKW3Fb-J3pnSS2-NqaBjg2_TqQ3DrtRiAivrJJ6ailJdnYx-s1tjSIqlKRtCi6kHC-PVQ2jYS1m16ZFJjkLbJ-jqD8ARFptS50RhJkx8ALNvr4KZH5EyWjNoOnKC57F_5QwPKVKwEW30QO-tPWD7CnCF2SgpkLRGUHlgoUP3HZQHLpDxqJzx0ccZY6w"/>
 <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
 <div class="max-w-2xl">
-<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">FÁCIL IMPLANTAÇÃO</span>
-<h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight">Uma instalação, muitas instituições.</h2>
-<p class="text-white/90 mt-6 text-lg md:text-xl font-light">Cadastre diversos lugares e atribua equipes autônomas em uma única infraestrutura.</p>
+<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4" data-i18n="slide4_badge">FÁCIL IMPLANTAÇÃO</span>
+<h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight" data-i18n="slide4_h2">Uma instalação, muitas instituições.</h2>
+<p class="text-white/90 mt-6 text-lg md:text-xl font-light" data-i18n="slide4_p">Cadastre diversos lugares e atribua equipes autônomas em uma única infraestrutura.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
 <!-- Left Arrow -->
-<button class="carousel-btn carousel-btn-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Slide anterior">
+<button class="carousel-btn carousel-btn-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Slide anterior" data-i18n-aria="aria_prev">
 <span class="material-symbols-outlined text-2xl">chevron_left</span>
 </button>
 <!-- Right Arrow -->
-<button class="carousel-btn carousel-btn-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Próximo slide">
+<button class="carousel-btn carousel-btn-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Próximo slide" data-i18n-aria="aria_next">
 <span class="material-symbols-outlined text-2xl">chevron_right</span>
 </button>
 </div>
 
 <!-- Carousel Indicators (Dots) -->
 <div class="flex justify-center gap-2 mt-8">
-<button class="carousel-dot carousel-dot-0 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 1" data-slide="0"></button>
-<button class="carousel-dot carousel-dot-1 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 2" data-slide="1"></button>
-<button class="carousel-dot carousel-dot-2 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 3" data-slide="2"></button>
-<button class="carousel-dot carousel-dot-3 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 4" data-slide="3"></button>
+<button class="carousel-dot carousel-dot-0 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 1" data-i18n-aria="aria_dot1" data-slide="0"></button>
+<button class="carousel-dot carousel-dot-1 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 2" data-i18n-aria="aria_dot2" data-slide="1"></button>
+<button class="carousel-dot carousel-dot-2 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 3" data-i18n-aria="aria_dot3" data-slide="2"></button>
+<button class="carousel-dot carousel-dot-3 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 4" data-i18n-aria="aria_dot4" data-slide="3"></button>
 </div>
 </div>
 </section>
@@ -293,8 +323,8 @@
 <div class="max-w-7xl mx-auto px-6">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
 <div class="lg:col-span-4 sticky top-32 h-fit">
-<h2 class="text-5xl font-headline font-extrabold tracking-tight text-on-surface mb-6">Características</h2>
-<p class="text-on-surface-variant text-lg leading-relaxed mb-8">O Farinha foi construído sobre oito características fundamentais que garantem a adaptação institucional e o acesso aos metadados e acervos.</p>
+<h2 class="text-5xl font-headline font-extrabold tracking-tight text-on-surface mb-6" data-i18n="sec_caracteristicas_title">Características</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8" data-i18n="sec_caracteristicas_desc">O Farinha foi construído sobre oito características fundamentais que garantem a adaptação institucional e o acesso aos metadados e acervos.</p>
 <div class="rounded-2xl overflow-hidden shadow-2xl">
 <img class="w-full h-auto" data-alt="Close up of hands interacting with a clean digital tablet interface displaying archival records and map data" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-aHKbxsQNgQz99j5K6U9MUA-KybYTdIgwyV-0eSCAjXtg7yF_4c3o4dhjRaZh38mGwsu2DmBxmMAF4wbP9h3mvtnzDWqMyF-2Ariv9cPdsAD9pUzCK6d6ZPQaNL4l8p12YK-3YRigHUpJunfu3yK4RLO9alqI6ZM6Xti7FOOvtL3UFWB6btJ4b9HdI0hIvnJAPMj8pSmeOzrbZrQHn1pz_BYJ9WsB6XH1EP3JGaQ5vhvPrpUvnKioxK6CfKcoNAEvY6HPR18CqDuR"/>
 </div>
@@ -305,57 +335,57 @@
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">rocket_launch</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Fácil Implantação</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Instalação simples e rápida, com poucos passos para colocar o sistema em funcionamento.</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_implantacao_title">Fácil Implantação</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_implantacao_desc">Instalação simples e rápida, com poucos passos para colocar o sistema em funcionamento.</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">domain</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Multi-institucional</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Gerencie diversas instituições dentro da mesma plataforma com isolamento e segurança.</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_multiinstitucional_title">Multi-institucional</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_multiinstitucional_desc">Gerencie diversas instituições dentro da mesma plataforma com isolamento e segurança.</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">account_tree</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Multisetorial</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Estrutura preparada para refletir a complexidade organográﬁca de qualquer organização.</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_multisetorial_title">Multisetorial</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_multisetorial_desc">Estrutura preparada para refletir a complexidade organográfica de qualquer organização.</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">inventory_2</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Multiacervos</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Fundos, coleções e tipologias documentais diversos, reunidos em um ecossistema digital unificado.</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_multiacervos_title">Multiacervos</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_multiacervos_desc">Fundos, coleções e tipologias documentais diversos, reunidos em um ecossistema digital unificado.</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">groups</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Equipes Autônomas</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Permissões granulares que permitem que cada equipe gerencie seu próprio fluxo de trabalho.</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_equipes_title">Equipes Autônomas</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_equipes_desc">Permissões granulares que permitem que cada equipe gerencie seu próprio fluxo de trabalho.</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">map</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Mapa</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Georreferenciamento de setores e acervos com base em sua localização atual de custódia.</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_mapa_title">Mapa</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_mapa_desc">Georreferenciamento de setores e acervos com base em sua localização atual de custódia.</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">search</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Encontre Tudo</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Sistema de busca avançado com pesos, navegação pela estrutura institucional e de arranjo e consulta em linguagem natural com IA (em breve).</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_busca_title">Encontre Tudo</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_busca_desc">Sistema de busca avançado com pesos, navegação pela estrutura institucional e de arranjo e consulta em linguagem natural com IA (em breve).</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">code</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Código-Fonte Livre</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Software livre de verdade, garantindo soberania digital e sustentabilidade técnica.</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_opensource_title">Código-Fonte Livre</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_opensource_desc">Software livre de verdade, garantindo soberania digital e sustentabilidade técnica.</p>
 </div>
 </div>
 </div>
@@ -366,37 +396,37 @@
 <div class="max-w-7xl mx-auto px-6">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
 <div class="lg:col-span-4 sticky top-32 h-fit">
-<h2 class="text-5xl font-headline font-extrabold tracking-tight text-on-surface mb-6">Objetos Digitais</h2>
-<p class="text-on-surface-variant text-lg leading-relaxed mb-8">Acesse representantes digitais de qualquer gênero documental. Itens documentais textuais, sonoros, audiovisuais e imagéticos podem ser acessados diretamente na plataforma.</p>
+<h2 class="text-5xl font-headline font-extrabold tracking-tight text-on-surface mb-6" data-i18n="sec_objetos_title">Objetos Digitais</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8" data-i18n="sec_objetos_desc">Acesse representantes digitais de qualquer gênero documental. Itens documentais textuais, sonoros, audiovisuais e imagéticos podem ser acessados diretamente na plataforma.</p>
 </div>
 <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">article</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Textuais</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Imagens ou formatos de documentos textuais, com suporte previsto a camadas de apoio (transcrição, tradução etc).</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_textuais_title">Textuais</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_textuais_desc">Imagens ou formatos de documentos textuais, com suporte previsto a camadas de apoio (transcrição, tradução etc).</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">photo_library</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Imagéticos</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Visualize itens documentais em três modalidades: um lado, dois lados (frente e verso) e galeria (várias imagens).</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_imageticos_title">Imagéticos</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_imageticos_desc">Visualize itens documentais em três modalidades: um lado, dois lados (frente e verso) e galeria (várias imagens).</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">audiotrack</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Sonoros</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Reprodutor integrado para áudios, como gravações de entrevistas e músicas.</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_sonoros_title">Sonoros</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_sonoros_desc">Reprodutor integrado para áudios, como gravações de entrevistas e músicas.</p>
 </div>
 <div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
 <span class="material-symbols-outlined">movie</span>
 </div>
-<h3 class="font-headline font-bold text-xl mb-3">Audiovisuais</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Reprodutor integrado de vídeo para assistir aos documentos audiovisuais.</p>
+<h3 class="font-headline font-bold text-xl mb-3" data-i18n="card_audiovisuais_title">Audiovisuais</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed" data-i18n="card_audiovisuais_desc">Reprodutor integrado de vídeo para assistir aos documentos audiovisuais.</p>
 </div>
 </div>
 </div>
@@ -406,13 +436,13 @@
 <section class="py-32 bg-surface-container-low" id="equipe">
 <div class="max-w-7xl mx-auto px-8">
 <div class="text-center mb-20">
-<h2 class="text-4xl font-headline font-bold text-on-surface">Equipe de Desenvolvimento</h2>
-<p class="text-on-surface-variant mt-4">Especialistas dedicados a criar a nova geração de plataformas para entidades de custódia.</p>
+<h2 class="text-4xl font-headline font-bold text-on-surface" data-i18n="sec_equipe_title">Equipe de Desenvolvimento</h2>
+<p class="text-on-surface-variant mt-4" data-i18n="sec_equipe_desc">Especialistas dedicados a criar a nova geração de plataformas para entidades de custódia.</p>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 <!-- Member 1 - Ricardo -->
 <div class="bg-white rounded-2xl p-8 flex flex-col h-full shadow-sm">
-<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">Com formação em Arquivologia e Ciência da Informação pela UFBA e experiência em plataformas digitais e tecnologias da informação aplicadas a arquivos permanentes e memoriais. Atua como Chefe do Escritório Regional Nordeste do Arquivo Nacional, cedido pela UFBA, onde é Arquivista. Membro do Laboratório de Humanidades Digitais (LABHDUFBA) e do Raul Hacker Club.</p>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow" data-i18n="member_ricardo_bio">Com formação em Arquivologia e Ciência da Informação pela UFBA e experiência em plataformas digitais e tecnologias da informação aplicadas a arquivos permanentes e memoriais. Atua como Chefe do Escritório Regional Nordeste do Arquivo Nacional, cedido pela UFBA, onde é Arquivista. Membro do Laboratório de Humanidades Digitais (LABHDUFBA) e do Raul Hacker Club.</p>
 <div class="flex items-center gap-4">
 <span class="text-primary text-2xl">❝</span>
 <div class="flex-grow">
@@ -422,14 +452,14 @@
 </div>
 <div class="text-right">
 <h4 class="font-headline font-bold text-sm">RICARDO<br/>SODRÉ<br/>ANDRADE</h4>
-<p class="text-primary text-xs font-medium mt-1">Coordenador</p>
+<p class="text-primary text-xs font-medium mt-1" data-i18n="member_ricardo_role">Coordenador</p>
 </div>
 </div>
 </div>
 
 <!-- Member 2 - Pablo -->
 <div class="bg-white rounded-2xl p-8 flex flex-col h-full shadow-sm">
-<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">Desenvolvedor com mais de 10 anos de experiência em aplicações web e móveis, atuando em diversas áreas, linguagens e frameworks. Atualmente, estuda cibersegurança, impressão e modelagem 3D, eletrônica e robótica. Membro do Raul Hacker Club.</p>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow" data-i18n="member_pablo_bio">Desenvolvedor com mais de 10 anos de experiência em aplicações web e móveis, atuando em diversas áreas, linguagens e frameworks. Atualmente, estuda cibersegurança, impressão e modelagem 3D, eletrônica e robótica. Membro do Raul Hacker Club.</p>
 <div class="flex items-center gap-4">
 <span class="text-primary text-2xl">❝</span>
 <div class="flex-grow">
@@ -439,14 +469,14 @@
 </div>
 <div class="text-right">
 <h4 class="font-headline font-bold text-sm">PABLO<br/>SOARES</h4>
-<p class="text-primary text-xs font-medium mt-1">Desenvolvedor Sênior</p>
+<p class="text-primary text-xs font-medium mt-1" data-i18n="member_pablo_role">Desenvolvedor Sênior</p>
 </div>
 </div>
 </div>
 
 <!-- Member 3 - Beatriz -->
 <div class="bg-white rounded-2xl p-8 flex flex-col h-full shadow-sm">
-<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">Graduada no Bacharelado Interdisciplinar em Ciência e Tecnologia pela UFBA, Especialista em Engenharia de Software. Atualmente é Analista em TI na DATAPREV.</p>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow" data-i18n="member_beatriz_bio">Graduada no Bacharelado Interdisciplinar em Ciência e Tecnologia pela UFBA, Especialista em Engenharia de Software. Atualmente é Analista em TI na DATAPREV.</p>
 <div class="flex items-center gap-4">
 <span class="text-primary text-2xl">❝</span>
 <div class="flex-grow">
@@ -456,14 +486,14 @@
 </div>
 <div class="text-right">
 <h4 class="font-headline font-bold text-sm">BEATRIZ<br/>AZEVEDO</h4>
-<p class="text-primary text-xs font-medium mt-1">Desenvolvedora</p>
+<p class="text-primary text-xs font-medium mt-1" data-i18n="member_beatriz_role">Desenvolvedora</p>
 </div>
 </div>
 </div>
 
 <!-- Member 4 - Cristian -->
 <div class="bg-white rounded-2xl p-8 flex flex-col h-full shadow-sm">
-<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">Gerente de projetos e arquiteto de soluções. Graduado em Análise de Sistemas e Tecnólogo em desenvolvimento de sistemas, possui especialização em Computação em Nuvem. É um entusiasta em implementação de soluções baseadas em software livre, impressão 3D da cultura Maker.</p>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow" data-i18n="member_cristian_bio">Gerente de projetos e arquiteto de soluções. Graduado em Análise de Sistemas e Tecnólogo em desenvolvimento de sistemas, possui especialização em Computação em Nuvem. É um entusiasta em implementação de soluções baseadas em software livre, impressão 3D da cultura Maker.</p>
 <div class="flex items-center gap-4">
 <span class="text-primary text-2xl">❝</span>
 <div class="flex-grow">
@@ -473,7 +503,7 @@
 </div>
 <div class="text-right">
 <h4 class="font-headline font-bold text-sm">CRISTIAN<br/>PRIVAT</h4>
-<p class="text-primary text-xs font-medium mt-1">Gerente de Projeto</p>
+<p class="text-primary text-xs font-medium mt-1" data-i18n="member_cristian_role">Gerente de Projeto</p>
 </div>
 </div>
 </div>
@@ -485,14 +515,14 @@
 <div class="max-w-5xl mx-auto px-8">
 <div class="hero-gradient rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl">
 <div class="relative z-10">
-<h2 class="text-4xl md:text-5xl font-headline font-extrabold mb-8 tracking-tight">Vamos começar?</h2>
-<p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">O Farinha é um software livre. Pessoas e instituições podem começar hoje mesmo a gerenciar seus acervos com Farinha, basta acessar nossa documentação!</p>
+<h2 class="text-4xl md:text-5xl font-headline font-extrabold mb-8 tracking-tight" data-i18n="cta_title">Vamos começar?</h2>
+<p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto" data-i18n="cta_p1">O Farinha é um software livre. Pessoas e instituições podem começar hoje mesmo a gerenciar seus acervos com Farinha, basta acessar nossa documentação!</p>
 <div class="flex justify-center mb-10">
-<a href="https://docs.farinha.info" target="_blank" rel="noopener" class="bg-surface-container-lowest text-primary px-10 py-4 rounded-full font-headline font-bold hover:bg-surface transition-all shadow-sm">Documentação (instale, configure e administre)</a>
+<a href="https://docs.farinha.info" target="_blank" rel="noopener" class="bg-surface-container-lowest text-primary px-10 py-4 rounded-full font-headline font-bold hover:bg-surface transition-all shadow-sm" data-i18n="cta_btn1">Documentação (instale, configure e administre)</a>
 </div>
-<p class="text-white/80 text-lg mb-6 max-w-2xl mx-auto">Quer ajuda? Contrate serviços de instalação, configuração ou treinamento!</p>
+<p class="text-white/80 text-lg mb-6 max-w-2xl mx-auto" data-i18n="cta_p2">Quer ajuda? Contrate serviços de instalação, configuração ou treinamento!</p>
 <div class="flex justify-center">
-<a href="https://yndexa.com" target="_blank" rel="noopener" class="bg-white/10 border border-white/20 backdrop-blur-sm text-white px-10 py-4 rounded-full font-headline font-bold hover:bg-white/20 transition-all">Quero saber mais</a>
+<a href="https://yndexa.com" target="_blank" rel="noopener" class="bg-white/10 border border-white/20 backdrop-blur-sm text-white px-10 py-4 rounded-full font-headline font-bold hover:bg-white/20 transition-all" data-i18n="cta_btn2">Quero saber mais</a>
 </div>
 </div>
 <!-- Aesthetic shape decoration -->
@@ -506,20 +536,327 @@
 <footer class="bg-slate-50 dark:bg-slate-950 w-full py-12 px-8 mt-24">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
 <div class="text-lg font-black text-slate-900 dark:text-slate-100 font-headline uppercase">Farinha</div>
-<p class="font-body text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 text-center">
-                © 2024 Farinha. Free Software for Archive Management.
+<p class="font-body text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 text-center" data-i18n="footer_copyright">
+                © 2024 Farinha. Software Livre para Gestão de Acervos.
             </p>
 <div class="flex gap-8">
-<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Privacidade</a>
-<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Termos</a>
-<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Documentação</a>
+<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#" data-i18n="footer_privacy">Privacidade</a>
+<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#" data-i18n="footer_terms">Termos</a>
+<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#" data-i18n="footer_docs">Documentação</a>
 <a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="https://gitlab.com/yndexa/farinha" target="_blank" rel="noopener">GitLab</a>
 </div>
 </div>
 </footer>
 
 <script>
-    // Carousel functionality
+    // ── i18n ──────────────────────────────────────────────────────────────────
+    const translations = {
+      pt: {
+        page_title: "Farinha - Gestão de Arquivos Permanentes",
+        nav_inicio: "Início", nav_caracteristicas: "Características",
+        nav_objetos: "Objetos Digitais", nav_equipe: "Equipe", nav_contato: "Contato",
+        btn_download: "Download",
+        slide1_badge: "O FARINHA",
+        slide1_h1: "Software livre para instituições que possuem arquivos permanentes e memoriais.",
+        slide1_p: "Desenvolvido para facilitar a gestão de acervos de valor histórico com precisão técnica.",
+        slide2_badge: "FUNDOS E COLEÇÕES",
+        slide2_h2: "Use a Nobrade (ou não).",
+        slide2_p: "Não desperdice o legado de arranjos e descrições. Avance com boas práticas e flexibilidade estrutural.",
+        slide3_badge: "OBJETOS DIGITAIS",
+        slide3_h2: "Acesse os documentos do acervo.",
+        slide3_p: "Adicione objetos digitais, sejam eles imagéticos, sonoros ou audiovisuais em alta performance.",
+        slide4_badge: "FÁCIL IMPLANTAÇÃO",
+        slide4_h2: "Uma instalação, muitas instituições.",
+        slide4_p: "Cadastre diversos lugares e atribua equipes autônomas em uma única infraestrutura.",
+        aria_prev: "Slide anterior", aria_next: "Próximo slide",
+        aria_dot1: "Ir para slide 1", aria_dot2: "Ir para slide 2",
+        aria_dot3: "Ir para slide 3", aria_dot4: "Ir para slide 4",
+        sec_caracteristicas_title: "Características",
+        sec_caracteristicas_desc: "O Farinha foi construído sobre oito características fundamentais que garantem a adaptação institucional e o acesso aos metadados e acervos.",
+        card_implantacao_title: "Fácil Implantação",
+        card_implantacao_desc: "Instalação simples e rápida, com poucos passos para colocar o sistema em funcionamento.",
+        card_multiinstitucional_title: "Multi-institucional",
+        card_multiinstitucional_desc: "Gerencie diversas instituições dentro da mesma plataforma com isolamento e segurança.",
+        card_multisetorial_title: "Multisetorial",
+        card_multisetorial_desc: "Estrutura preparada para refletir a complexidade organográfica de qualquer organização.",
+        card_multiacervos_title: "Multiacervos",
+        card_multiacervos_desc: "Fundos, coleções e tipologias documentais diversos, reunidos em um ecossistema digital unificado.",
+        card_equipes_title: "Equipes Autônomas",
+        card_equipes_desc: "Permissões granulares que permitem que cada equipe gerencie seu próprio fluxo de trabalho.",
+        card_mapa_title: "Mapa",
+        card_mapa_desc: "Georreferenciamento de setores e acervos com base em sua localização atual de custódia.",
+        card_busca_title: "Encontre Tudo",
+        card_busca_desc: "Sistema de busca avançado com pesos, navegação pela estrutura institucional e de arranjo e consulta em linguagem natural com IA (em breve).",
+        card_opensource_title: "Código-Fonte Livre",
+        card_opensource_desc: "Software livre de verdade, garantindo soberania digital e sustentabilidade técnica.",
+        sec_objetos_title: "Objetos Digitais",
+        sec_objetos_desc: "Acesse representantes digitais de qualquer gênero documental. Itens documentais textuais, sonoros, audiovisuais e imagéticos podem ser acessados diretamente na plataforma.",
+        card_textuais_title: "Textuais",
+        card_textuais_desc: "Imagens ou formatos de documentos textuais, com suporte previsto a camadas de apoio (transcrição, tradução etc).",
+        card_imageticos_title: "Imagéticos",
+        card_imageticos_desc: "Visualize itens documentais em três modalidades: um lado, dois lados (frente e verso) e galeria (várias imagens).",
+        card_sonoros_title: "Sonoros",
+        card_sonoros_desc: "Reprodutor integrado para áudios, como gravações de entrevistas e músicas.",
+        card_audiovisuais_title: "Audiovisuais",
+        card_audiovisuais_desc: "Reprodutor integrado de vídeo para assistir aos documentos audiovisuais.",
+        sec_equipe_title: "Equipe de Desenvolvimento",
+        sec_equipe_desc: "Especialistas dedicados a criar a nova geração de plataformas para entidades de custódia.",
+        member_ricardo_bio: "Com formação em Arquivologia e Ciência da Informação pela UFBA e experiência em plataformas digitais e tecnologias da informação aplicadas a arquivos permanentes e memoriais. Atua como Chefe do Escritório Regional Nordeste do Arquivo Nacional, cedido pela UFBA, onde é Arquivista. Membro do Laboratório de Humanidades Digitais (LABHDUFBA) e do Raul Hacker Club.",
+        member_ricardo_role: "Coordenador",
+        member_pablo_bio: "Desenvolvedor com mais de 10 anos de experiência em aplicações web e móveis, atuando em diversas áreas, linguagens e frameworks. Atualmente, estuda cibersegurança, impressão e modelagem 3D, eletrônica e robótica. Membro do Raul Hacker Club.",
+        member_pablo_role: "Desenvolvedor Sênior",
+        member_beatriz_bio: "Graduada no Bacharelado Interdisciplinar em Ciência e Tecnologia pela UFBA, Especialista em Engenharia de Software. Atualmente é Analista em TI na DATAPREV.",
+        member_beatriz_role: "Desenvolvedora",
+        member_cristian_bio: "Gerente de projetos e arquiteto de soluções. Graduado em Análise de Sistemas e Tecnólogo em desenvolvimento de sistemas, possui especialização em Computação em Nuvem. É um entusiasta em implementação de soluções baseadas em software livre, impressão 3D da cultura Maker.",
+        member_cristian_role: "Gerente de Projeto",
+        cta_title: "Vamos começar?",
+        cta_p1: "O Farinha é um software livre. Pessoas e instituições podem começar hoje mesmo a gerenciar seus acervos com Farinha, basta acessar nossa documentação!",
+        cta_btn1: "Documentação (instale, configure e administre)",
+        cta_p2: "Quer ajuda? Contrate serviços de instalação, configuração ou treinamento!",
+        cta_btn2: "Quero saber mais",
+        footer_copyright: "© 2024 Farinha. Software Livre para Gestão de Acervos.",
+        footer_privacy: "Privacidade", footer_terms: "Termos", footer_docs: "Documentação",
+      },
+
+      en: {
+        page_title: "Farinha - Permanent Archive Management",
+        nav_inicio: "Home", nav_caracteristicas: "Features",
+        nav_objetos: "Digital Objects", nav_equipe: "Team", nav_contato: "Contact",
+        btn_download: "Download",
+        slide1_badge: "FARINHA",
+        slide1_h1: "Free software for institutions with permanent archives and memorial collections.",
+        slide1_p: "Developed to streamline the management of historically significant holdings with technical precision.",
+        slide2_badge: "FONDS AND COLLECTIONS",
+        slide2_h2: "Use Nobrade (or not).",
+        slide2_p: "Don't waste the legacy of arrangement and description. Move forward with best practices and structural flexibility.",
+        slide3_badge: "DIGITAL OBJECTS",
+        slide3_h2: "Access the holdings' documents.",
+        slide3_p: "Add digital objects — whether image-based, audio, or audiovisual — with high performance.",
+        slide4_badge: "EASY DEPLOYMENT",
+        slide4_h2: "One installation, many institutions.",
+        slide4_p: "Register multiple custodial institutions and assign autonomous teams within a single infrastructure.",
+        aria_prev: "Previous slide", aria_next: "Next slide",
+        aria_dot1: "Go to slide 1", aria_dot2: "Go to slide 2",
+        aria_dot3: "Go to slide 3", aria_dot4: "Go to slide 4",
+        sec_caracteristicas_title: "Features",
+        sec_caracteristicas_desc: "Farinha was built on eight fundamental features that ensure institutional adaptation and access to metadata and holdings.",
+        card_implantacao_title: "Easy Deployment",
+        card_implantacao_desc: "Simple and fast installation, with just a few steps to get the system up and running.",
+        card_multiinstitucional_title: "Multi-institutional",
+        card_multiinstitucional_desc: "Manage multiple institutions within the same platform with isolation and security.",
+        card_multisetorial_title: "Multi-sectoral",
+        card_multisetorial_desc: "Structure designed to reflect the organizational complexity of any institution.",
+        card_multiacervos_title: "Multi-holdings",
+        card_multiacervos_desc: "Diverse fonds, collections, and documentary typologies, unified in a single digital ecosystem.",
+        card_equipes_title: "Autonomous Teams",
+        card_equipes_desc: "Granular permissions that allow each team to manage its own workflow.",
+        card_mapa_title: "Map",
+        card_mapa_desc: "Georeferencing of sectors and holdings based on their current custodial location.",
+        card_busca_title: "Find Everything",
+        card_busca_desc: "Advanced search system with weighted rankings, navigation through institutional and arrangement structures, and natural language AI queries (coming soon).",
+        card_opensource_title: "Free Source Code",
+        card_opensource_desc: "Truly free software, ensuring digital sovereignty and technical sustainability.",
+        sec_objetos_title: "Digital Objects",
+        sec_objetos_desc: "Access digital surrogates of any documentary genre. Textual, audio, audiovisual, and image-based documentary items can be accessed directly on the platform.",
+        card_textuais_title: "Textual",
+        card_textuais_desc: "Images or formats of textual documents, with planned support for auxiliary layers (transcription, translation, etc.).",
+        card_imageticos_title: "Image-based",
+        card_imageticos_desc: "View documentary items in three modes: single side, double-sided (recto and verso), and gallery (multiple images).",
+        card_sonoros_title: "Audio",
+        card_sonoros_desc: "Integrated player for audio documents, such as interview recordings and music.",
+        card_audiovisuais_title: "Audiovisual",
+        card_audiovisuais_desc: "Integrated video player for viewing audiovisual documents.",
+        sec_equipe_title: "Development Team",
+        sec_equipe_desc: "Specialists dedicated to building the next generation of platforms for custodial institutions.",
+        member_ricardo_bio: "Holds degrees in Archival Science and Information Science from UFBA, with experience in digital platforms and information technologies applied to permanent archives and memorial collections. Serves as Head of the Northeast Regional Office of the Brazilian National Archives, seconded from UFBA, where he is an archivist. Member of the Digital Humanities Lab (LABHDUFBA) and the Raul Hacker Club.",
+        member_ricardo_role: "Coordinator",
+        member_pablo_bio: "Developer with over 10 years of experience in web and mobile applications, working across diverse areas, languages, and frameworks. Currently studying cybersecurity, 3D printing and modeling, electronics, and robotics. Member of the Raul Hacker Club.",
+        member_pablo_role: "Senior Developer",
+        member_beatriz_bio: "Bachelor's degree in Interdisciplinary Science and Technology from UFBA, specialist in Software Engineering. Currently works as an IT Analyst at DATAPREV.",
+        member_beatriz_role: "Developer",
+        member_cristian_bio: "Project manager and solutions architect. Graduated in Systems Analysis and holds a technologist degree in Systems Development, with a specialization in Cloud Computing. Enthusiast of free software-based solution implementation and 3D printing in the Maker culture.",
+        member_cristian_role: "Project Manager",
+        cta_title: "Let's get started?",
+        cta_p1: "Farinha is free software. Individuals and institutions can start managing their holdings with Farinha today — just visit our documentation!",
+        cta_btn1: "Documentation (install, configure and manage)",
+        cta_p2: "Need help? Hire installation, configuration or training services!",
+        cta_btn2: "I want to know more",
+        footer_copyright: "© 2024 Farinha. Free Software for Archive Management.",
+        footer_privacy: "Privacy", footer_terms: "Terms", footer_docs: "Documentation",
+      },
+
+      es: {
+        page_title: "Farinha - Gestión de Archivos Permanentes",
+        nav_inicio: "Inicio", nav_caracteristicas: "Características",
+        nav_objetos: "Objetos Digitales", nav_equipe: "Equipo", nav_contato: "Contacto",
+        btn_download: "Descarga",
+        slide1_badge: "EL FARINHA",
+        slide1_h1: "Software libre para instituciones con archivos permanentes y memoriales.",
+        slide1_p: "Desarrollado para facilitar la gestión de acervos de valor histórico con precisión técnica.",
+        slide2_badge: "FONDOS Y COLECCIONES",
+        slide2_h2: "Usa la Nobrade (o no).",
+        slide2_p: "No desperdicies el legado de la organización y descripción. Avanza con buenas prácticas y flexibilidad estructural.",
+        slide3_badge: "OBJETOS DIGITALES",
+        slide3_h2: "Accede a los documentos del acervo.",
+        slide3_p: "Agrega objetos digitales — ya sean imagéticos, sonoros o audiovisuales — con alto rendimiento.",
+        slide4_badge: "FÁCIL IMPLEMENTACIÓN",
+        slide4_h2: "Una instalación, muchas instituciones.",
+        slide4_p: "Registra diversas entidades de custodia y asigna equipos autónomos en una única infraestructura.",
+        aria_prev: "Diapositiva anterior", aria_next: "Siguiente diapositiva",
+        aria_dot1: "Ir a la diapositiva 1", aria_dot2: "Ir a la diapositiva 2",
+        aria_dot3: "Ir a la diapositiva 3", aria_dot4: "Ir a la diapositiva 4",
+        sec_caracteristicas_title: "Características",
+        sec_caracteristicas_desc: "Farinha fue construido sobre ocho características fundamentales que garantizan la adaptación institucional y el acceso a los metadatos y acervos.",
+        card_implantacao_title: "Fácil Implementación",
+        card_implantacao_desc: "Instalación simple y rápida, con pocos pasos para poner el sistema en funcionamiento.",
+        card_multiinstitucional_title: "Multi-institucional",
+        card_multiinstitucional_desc: "Gestiona diversas instituciones dentro de la misma plataforma con aislamiento y seguridad.",
+        card_multisetorial_title: "Multisectorial",
+        card_multisetorial_desc: "Estructura preparada para reflejar la complejidad organográfica de cualquier organización.",
+        card_multiacervos_title: "Multi-acervos",
+        card_multiacervos_desc: "Fondos, colecciones y tipologías documentales diversos, reunidos en un ecosistema digital unificado.",
+        card_equipes_title: "Equipos Autónomos",
+        card_equipes_desc: "Permisos granulares que permiten a cada equipo gestionar su propio flujo de trabajo.",
+        card_mapa_title: "Mapa",
+        card_mapa_desc: "Georreferenciación de sectores y acervos con base en su ubicación actual de custodia.",
+        card_busca_title: "Encuentra Todo",
+        card_busca_desc: "Sistema de búsqueda avanzado con ponderaciones, navegación por la estructura institucional y de organización, y consulta en lenguaje natural con IA (próximamente).",
+        card_opensource_title: "Código Fuente Libre",
+        card_opensource_desc: "Software verdaderamente libre, garantizando la soberanía digital y la sostenibilidad técnica.",
+        sec_objetos_title: "Objetos Digitales",
+        sec_objetos_desc: "Accede a los sustitutos digitales de cualquier género documental. Los ítems documentales textuales, sonoros, audiovisuales e imagéticos pueden ser accedidos directamente en la plataforma.",
+        card_textuais_title: "Textuales",
+        card_textuais_desc: "Imágenes o formatos de documentos textuales, con soporte previsto para capas de apoyo (transcripción, traducción, etc.).",
+        card_imageticos_title: "Imagéticos",
+        card_imageticos_desc: "Visualiza ítems documentales en tres modalidades: un lado, dos lados (frente y verso) y galería (varias imágenes).",
+        card_sonoros_title: "Sonoros",
+        card_sonoros_desc: "Reproductor integrado para audios, como grabaciones de entrevistas y música.",
+        card_audiovisuais_title: "Audiovisuales",
+        card_audiovisuais_desc: "Reproductor integrado de video para ver los documentos audiovisuales.",
+        sec_equipe_title: "Equipo de Desarrollo",
+        sec_equipe_desc: "Especialistas dedicados a crear la nueva generación de plataformas para entidades de custodia.",
+        member_ricardo_bio: "Con formación en Archivología y Ciencias de la Información por la UFBA y experiencia en plataformas digitales y tecnologías de la información aplicadas a archivos permanentes y memoriales. Se desempeña como Jefe de la Oficina Regional Nordeste del Archivo Nacional de Brasil, cedido por la UFBA, donde es Archivista. Miembro del Laboratorio de Humanidades Digitales (LABHDUFBA) y del Raul Hacker Club.",
+        member_ricardo_role: "Coordinador",
+        member_pablo_bio: "Desarrollador con más de 10 años de experiencia en aplicaciones web y móviles, actuando en diversas áreas, lenguajes y frameworks. Actualmente estudia ciberseguridad, impresión y modelado 3D, electrónica y robótica. Miembro del Raul Hacker Club.",
+        member_pablo_role: "Desarrollador Sénior",
+        member_beatriz_bio: "Licenciada en el Bachillerato Interdisciplinario en Ciencia y Tecnología por la UFBA, Especialista en Ingeniería de Software. Actualmente es Analista de TI en DATAPREV.",
+        member_beatriz_role: "Desarrolladora",
+        member_cristian_bio: "Gerente de proyectos y arquitecto de soluciones. Graduado en Análisis de Sistemas y Tecnólogo en desarrollo de sistemas, posee especialización en Computación en la Nube. Es un entusiasta de la implementación de soluciones basadas en software libre e impresión 3D de la cultura Maker.",
+        member_cristian_role: "Gerente de Proyecto",
+        cta_title: "¿Empezamos?",
+        cta_p1: "Farinha es un software libre. Personas e instituciones pueden comenzar hoy mismo a gestionar sus acervos con Farinha, solo accede a nuestra documentación.",
+        cta_btn1: "Documentación (instala, configura y administra)",
+        cta_p2: "¿Necesitas ayuda? ¡Contrata servicios de instalación, configuración o formación!",
+        cta_btn2: "Quiero saber más",
+        footer_copyright: "© 2024 Farinha. Software Libre para Gestión de Archivos.",
+        footer_privacy: "Privacidad", footer_terms: "Términos", footer_docs: "Documentación",
+      },
+
+      ro: {
+        page_title: "Farinha - Gestionarea Arhivelor Permanente",
+        nav_inicio: "Acasă", nav_caracteristicas: "Caracteristici",
+        nav_objetos: "Obiecte Digitale", nav_equipe: "Echipă", nav_contato: "Contact",
+        btn_download: "Descărcare",
+        slide1_badge: "FARINHA",
+        slide1_h1: "Software liber pentru instituții cu arhive permanente și colecții memoriale.",
+        slide1_p: "Dezvoltat pentru a facilita gestionarea colecțiilor de valoare istorică cu precizie tehnică.",
+        slide2_badge: "FONDURI ȘI COLECȚII",
+        slide2_h2: "Folosiți Nobrade (sau nu).",
+        slide2_p: "Nu irositi moștenirea aranjamentelor și descrierilor. Avansați cu bune practici și flexibilitate structurală.",
+        slide3_badge: "OBIECTE DIGITALE",
+        slide3_h2: "Accesați documentele colecției.",
+        slide3_p: "Adăugați obiecte digitale — imagistice, sonore sau audiovizuale — cu performanță ridicată.",
+        slide4_badge: "IMPLEMENTARE FACILĂ",
+        slide4_h2: "O instalare, multe instituții.",
+        slide4_p: "Înregistrați diverse entități de custodie și atribuiți echipe autonome într-o singură infrastructură.",
+        aria_prev: "Diapozitivul anterior", aria_next: "Diapozitivul următor",
+        aria_dot1: "Mergeți la diapozitivul 1", aria_dot2: "Mergeți la diapozitivul 2",
+        aria_dot3: "Mergeți la diapozitivul 3", aria_dot4: "Mergeți la diapozitivul 4",
+        sec_caracteristicas_title: "Caracteristici",
+        sec_caracteristicas_desc: "Farinha a fost construit pe opt caracteristici fundamentale care asigură adaptarea instituțională și accesul la metadate și colecții.",
+        card_implantacao_title: "Implementare Facilă",
+        card_implantacao_desc: "Instalare simplă și rapidă, cu câțiva pași pentru a pune sistemul în funcțiune.",
+        card_multiinstitucional_title: "Multi-instituțional",
+        card_multiinstitucional_desc: "Gestionați mai multe instituții în aceeași platformă cu izolare și securitate.",
+        card_multisetorial_title: "Multisectorial",
+        card_multisetorial_desc: "Structură pregătită pentru a reflecta complexitatea organizațională a oricărei instituții.",
+        card_multiacervos_title: "Multi-colecții",
+        card_multiacervos_desc: "Fonduri, colecții și tipologii documentare diverse, reunite într-un ecosistem digital unificat.",
+        card_equipes_title: "Echipe Autonome",
+        card_equipes_desc: "Permisiuni granulare care permit fiecărei echipe să își gestioneze propriul flux de lucru.",
+        card_mapa_title: "Hartă",
+        card_mapa_desc: "Georeferențierea sectoarelor și colecțiilor în funcție de locația lor actuală de custodie.",
+        card_busca_title: "Găsește Tot",
+        card_busca_desc: "Sistem de căutare avansat cu ponderări, navigare prin structura instituțională și de aranjament, și interogare în limbaj natural cu IA (în curând).",
+        card_opensource_title: "Cod Sursă Liber",
+        card_opensource_desc: "Software cu adevărat liber, garantând suveranitatea digitală și sustenabilitatea tehnică.",
+        sec_objetos_title: "Obiecte Digitale",
+        sec_objetos_desc: "Accesați substitutele digitale ale oricărui gen documentar. Elementele documentare textuale, sonore, audiovizuale și imagistice pot fi accesate direct pe platformă.",
+        card_textuais_title: "Textuale",
+        card_textuais_desc: "Imagini sau formate ale documentelor textuale, cu suport planificat pentru straturi auxiliare (transcriere, traducere etc.).",
+        card_imageticos_title: "Imagistice",
+        card_imageticos_desc: "Vizualizați elementele documentare în trei modalități: o față, două fețe (față și verso) și galerie (mai multe imagini).",
+        card_sonoros_title: "Sonore",
+        card_sonoros_desc: "Redare integrată pentru documente audio, cum ar fi înregistrări de interviuri și muzică.",
+        card_audiovisuais_title: "Audiovizuale",
+        card_audiovisuais_desc: "Redare video integrată pentru vizionarea documentelor audiovizuale.",
+        sec_equipe_title: "Echipa de Dezvoltare",
+        sec_equipe_desc: "Specialiști dedicați creării noii generații de platforme pentru entitățile de custodie.",
+        member_ricardo_bio: "Licențiat în Arhivistică și Știința Informației la UFBA, cu experiență în platforme digitale și tehnologii informaționale aplicate arhivelor permanente și colecțiilor memoriale. Conduce Biroul Regional Nord-Est al Arhivelor Naționale ale Braziliei, detașat de la UFBA, unde este arhivist. Membru al Laboratorului de Științe Umaniste Digitale (LABHDUFBA) și al Raul Hacker Club.",
+        member_ricardo_role: "Coordonator",
+        member_pablo_bio: "Dezvoltator cu peste 10 ani de experiență în aplicații web și mobile, lucrând în diverse domenii, limbaje și framework-uri. În prezent studiază securitate cibernetică, imprimare și modelare 3D, electronică și robotică. Membru al Raul Hacker Club.",
+        member_pablo_role: "Dezvoltator Senior",
+        member_beatriz_bio: "Absolventă a Bacelariatului Interdisciplinar în Știință și Tehnologie la UFBA, Specialist în Inginerie Software. În prezent este Analist IT la DATAPREV.",
+        member_beatriz_role: "Dezvoltatoare",
+        member_cristian_bio: "Manager de proiecte și arhitect de soluții. Absolvent în Analiza Sistemelor și Tehnolog în dezvoltarea sistemelor, cu specializare în Cloud Computing. Entuziast al implementării soluțiilor bazate pe software liber și al imprimării 3D din cultura Maker.",
+        member_cristian_role: "Manager de Proiect",
+        cta_title: "Să începem?",
+        cta_p1: "Farinha este software liber. Persoanele și instituțiile pot începe astăzi să-și gestioneze colecțiile cu Farinha — accesați documentația noastră!",
+        cta_btn1: "Documentație (instalați, configurați și administrați)",
+        cta_p2: "Aveți nevoie de ajutor? Contractați servicii de instalare, configurare sau instruire!",
+        cta_btn2: "Vreau să știu mai mult",
+        footer_copyright: "© 2024 Farinha. Software Liber pentru Gestionarea Arhivelor.",
+        footer_privacy: "Confidențialitate", footer_terms: "Termeni", footer_docs: "Documentație",
+      }
+    };
+
+    function setLanguage(lang) {
+        if (!translations[lang]) return;
+        localStorage.setItem('farinha-lang', lang);
+        document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+        document.title = translations[lang].page_title;
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key] !== undefined) {
+                el.textContent = translations[lang][key];
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+            const key = el.getAttribute('data-i18n-aria');
+            if (translations[lang][key] !== undefined) {
+                el.setAttribute('aria-label', translations[lang][key]);
+            }
+        });
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('lang-btn-active', btn.getAttribute('data-lang') === lang);
+        });
+    }
+
+    // Detect language on load
+    (function() {
+        const saved = localStorage.getItem('farinha-lang');
+        const supported = ['pt', 'en', 'es', 'ro'];
+        const browserLang = (navigator.language || '').substring(0, 2).toLowerCase();
+        const lang = (saved && supported.includes(saved)) ? saved
+                   : supported.includes(browserLang) ? browserLang
+                   : 'pt';
+        setLanguage(lang);
+    })();
+
+    // ── Carousel ──────────────────────────────────────────────────────────────
     const track = document.querySelector('.carousel-track');
     if (track) {
         const slides = track.children.length;
@@ -543,7 +880,6 @@
             setTimeout(startAuto, 3000);
         }
 
-        // Arrow button handlers
         const nextBtn = document.querySelector('.carousel-btn-next');
         const prevBtn = document.querySelector('.carousel-btn-prev');
 
@@ -562,7 +898,6 @@
             });
         }
 
-        // Dot button handlers
         document.querySelectorAll('.carousel-dot').forEach(dot => {
             dot.addEventListener('click', function() {
                 this.blur();
@@ -571,7 +906,6 @@
             });
         });
 
-        // Initial setup
         goTo(0);
         startAuto();
     }
@@ -587,15 +921,11 @@
         });
     });
 
-    // Add active state to nav links based on scroll position
+    // Active nav link on scroll
     window.addEventListener('scroll', () => {
         let current = '';
-        const sections = document.querySelectorAll('section[id]');
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop - 200) {
+        document.querySelectorAll('section[id]').forEach(section => {
+            if (pageYOffset >= section.offsetTop - 200) {
                 current = section.getAttribute('id');
             }
         });
@@ -603,7 +933,6 @@
         document.querySelectorAll('nav a[href^="#"]').forEach(link => {
             link.classList.remove('text-cyan-600', 'dark:text-cyan-400', 'border-b-2', 'border-cyan-500/20');
             link.classList.add('text-slate-600', 'dark:text-slate-400');
-
             if (link.getAttribute('href') === '#' + current) {
                 link.classList.remove('text-slate-600', 'dark:text-slate-400');
                 link.classList.add('text-cyan-600', 'dark:text-cyan-400', 'border-b-2', 'border-cyan-500/20');
@@ -611,19 +940,16 @@
         });
     });
 
-
-    // Image lazy loading support
+    // Image lazy loading
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.style.opacity = '1';
-                    observer.unobserve(img);
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target);
                 }
             });
         });
-
         document.querySelectorAll('img').forEach(img => {
             img.style.opacity = '0';
             img.style.transition = 'opacity 0.3s ease';
@@ -631,29 +957,10 @@
         });
     }
 
-    // Mobile menu toggle (for future mobile nav implementation)
-    const mobileMenuButton = document.querySelector('[data-mobile-menu]');
-    if (mobileMenuButton) {
-        mobileMenuButton.addEventListener('click', function() {
-            const menu = this.nextElementSibling;
-            menu.classList.toggle('hidden');
-        });
-    }
-
-    // Form validation helper (for future contact forms)
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-
-// Expose globally for button handlers
     window.appHelpers = {
-        validateEmail,
         goToSection: (id) => {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
 </script>
