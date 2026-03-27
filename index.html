@@ -212,16 +212,10 @@
 <div class="relative">
 
 <!-- Carousel Container -->
-<div class="overflow-hidden rounded-3xl relative h-[600px]">
-<!-- Left Arrow -->
-<button class="carousel-btn carousel-btn-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Slide anterior">
-<span class="material-symbols-outlined text-2xl">chevron_left</span>
-</button>
-<!-- Right Arrow -->
-<button class="carousel-btn carousel-btn-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Próximo slide">
-<span class="material-symbols-outlined text-2xl">chevron_right</span>
-</button>
-<div class="carousel-track flex">
+<div class="relative h-[600px]">
+<!-- Carousel (overflow-hidden apenas para o track) -->
+<div class="overflow-hidden rounded-3xl h-full">
+<div class="carousel-track flex h-full">
 <!-- Slide 1 -->
 <div class="flex-none w-full">
 <div class="relative h-[600px]">
@@ -275,6 +269,14 @@
 </div>
 </div>
 </div>
+<!-- Left Arrow -->
+<button class="carousel-btn carousel-btn-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Slide anterior">
+<span class="material-symbols-outlined text-2xl">chevron_left</span>
+</button>
+<!-- Right Arrow -->
+<button class="carousel-btn carousel-btn-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-colors shadow-md flex items-center justify-center text-primary hover:text-primary/80" aria-label="Próximo slide">
+<span class="material-symbols-outlined text-2xl">chevron_right</span>
+</button>
 </div>
 
 <!-- Carousel Indicators (Dots) -->
