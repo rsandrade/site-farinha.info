@@ -612,19 +612,6 @@
         });
     });
 
-    // Button interactions
-    document.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', function() {
-            // Visual feedback
-            this.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 100);
-
-            // Log button clicks for analytics (optional)
-            console.log('Button clicked:', this.textContent);
-        });
-    });
 
     // Image lazy loading support
     if ('IntersectionObserver' in window) {
