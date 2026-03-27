@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Farinha - Software livre para gestão de arquivos permanentes com precisão técnica"/>
+<meta name="theme-color" content="#006970"/>
+<title>Farinha - Gestão de Arquivos Permanentes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#564500",
+              "tertiary": "#5f5e5e",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#c8c6c6",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#ffe07d",
+              "primary-fixed-dim": "#72d5df",
+              "secondary-fixed-dim": "#ecc200",
+              "on-tertiary-fixed-variant": "#474747",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#705b00",
+              "on-primary-fixed-variant": "#004f54",
+              "on-primary-fixed": "#002022",
+              "surface-dim": "#dbd9d9",
+              "error": "#ba1a1a",
+              "background": "#fbf9f8",
+              "on-secondary-fixed": "#231b00",
+              "inverse-surface": "#303030",
+              "secondary": "#725c00",
+              "surface-tint": "#006970",
+              "on-surface-variant": "#3e494a",
+              "surface-container-highest": "#e4e2e2",
+              "surface-bright": "#fbf9f8",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#004246",
+              "surface-container-lowest": "#ffffff",
+              "surface": "#fbf9f8",
+              "surface-container-high": "#eae8e7",
+              "on-error-container": "#93000a",
+              "outline": "#6e797a",
+              "primary-fixed": "#90f2fb",
+              "secondary-container": "#ffd31e",
+              "outline-variant": "#bdc9ca",
+              "primary": "#006970",
+              "surface-container": "#efeded",
+              "tertiary-container": "#a5a4a4",
+              "tertiary-fixed": "#e4e2e1",
+              "primary-container": "#4db3bc",
+              "inverse-primary": "#72d5df",
+              "inverse-on-surface": "#f2f0f0",
+              "surface-variant": "#e4e2e2",
+              "on-tertiary-fixed": "#1b1c1c",
+              "on-surface": "#1b1c1c",
+              "on-tertiary-container": "#3a3a3a",
+              "surface-container-low": "#f5f3f3",
+              "on-background": "#1b1c1c"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-nav {
+            background: rgba(251, 249, 248, 0.8);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #006970 0%, #4db3bc 100%);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Carousel smooth scrolling */
+        .carousel-container {
+            scroll-behavior: smooth;
+        }
+
+        /* Smooth fade for images */
+        img {
+            transition: transform 0.3s ease;
+        }
+
+        /* Card hover effect aligned with design system */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Button interactions */
+        button {
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Link transitions */
+        a {
+            transition: color 0.2s ease;
+        }
+
+        /* Section transitions */
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* Smooth underline for nav links */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #006970;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Carousel Controls */
+        .carousel-btn {
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+        }
+
+        .carousel-container:hover ~ .carousel-btn-next,
+        .carousel-container:hover ~ .carousel-btn-prev,
+        section:hover .carousel-btn-prev,
+        section:hover .carousel-btn-next {
+            opacity: 1;
+        }
+
+        .carousel-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Carousel Dots */
+        .carousel-dot {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-dot.active {
+            background-color: #006970;
+            width: 0.75rem;
+            height: 0.75rem;
+        }
+
+        .carousel-dot:not(.active):hover {
+            background-color: #4db3bc;
+        }
+
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50">
+<nav class="glass-nav rounded-full px-8 py-4 flex justify-between items-center">
+<div class="text-xl font-bold tracking-tighter text-on-surface font-headline">
+                Farinha
+            </div>
+<div class="hidden md:flex items-center gap-12">
+<a class="nav-link text-primary font-semibold font-headline text-sm tracking-tight" href="#inicio">Início</a>
+<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#atuacao">Atuação</a>
+<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#objetos">Objetos Digitais</a>
+<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#equipe">Equipe</a>
+<a class="nav-link text-on-surface hover:text-primary font-headline text-sm tracking-tight" href="#contato">Contato</a>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full font-headline text-sm font-medium transition-all duration-200 active:scale-95">
+                Download
+            </button>
+</nav>
+</header>
+<main>
+<!-- Hero Carousel Section -->
+<section class="relative pt-32 pb-16 overflow-hidden bg-surface" id="inicio">
+<div class="max-w-7xl mx-auto px-8">
+<!-- Carousel Wrapper -->
+<div class="relative">
+<!-- Left Arrow -->
+<button class="carousel-btn carousel-btn-prev absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-all shadow-md flex items-center justify-center text-primary hover:text-primary/80 -translate-x-6 md:-translate-x-20 active:scale-95" aria-label="Slide anterior">
+<span class="material-symbols-outlined text-2xl">chevron_left</span>
+</button>
+
+<!-- Carousel Container -->
+<div class="carousel-container flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-8 pb-12">
+<!-- Slide 1 -->
+<div class="flex-none w-full snap-center">
+<div class="relative h-[600px] rounded-3xl overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="Modern minimalist office space with clean lines, soft natural lighting and a central archive cabinet representing organization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU20Cm9GUBnqjuiq-hNRejWyWGfiFUUm2bl0M0BtQVfOsaaH1o6BhS4C-QKKK67AEmOKD-fc8HTFbAilSc0oCHG9045duXElaUu9rfo4pqoUyZ623xp8LvBUOeqMJwxnJxq14_tW7-u2xxyg9qCOsBSWLygHGmGNcGB0_frJNi9Jq4ibhl2ywvMXejLaMkVVnVARNvi_AuBtRza3ml6qwmTSYvaKmpb0UdlnvuX-H3EwYklnQFH8T4s8OzAORLBtcoude9FiPfNeVi"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
+<div class="max-w-2xl">
+<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">O FARINHA</span>
+<h1 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight">Software livre para gestão de arquivos permanentes.</h1>
+<p class="text-white/90 mt-6 text-lg md:text-xl font-light">Desenvolvido para facilitar a gestão de acervos de valor histórico com precisão técnica.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 2 -->
+<div class="flex-none w-full snap-center">
+<div class="relative h-[600px] rounded-3xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up of historical paper documents and vintage archive folders organized neatly in a professional archival setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeSGBW-xylHmSwkR7Sj-odjbHj0H0zDmMwCuUFFGWCyXEy2wt9QzBqs6KxZwtaDZiQSm3Zm-BKca-3GkjgSCbVY1oolTvSe5gnjK_XXbxBSZr_2NMp6FP7eSW-hvNmfdoNQtDLf72H4rhbD0RJjqW3tYEX4vrdcrYtqqXXsq7qTh8OU6AAOuaa0XTFyPs80Sn3HWrWNBJLUiEJC4FJJJsrQpdiApswfNxFvs8a6BlkUuG25ZQ0gSVgY78nzXdoDn80Ef8H5oM2y7O4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
+<div class="max-w-2xl">
+<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">FUNDOS E COLEÇÕES</span>
+<h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight">Use a Nobrade (ou não).</h2>
+<p class="text-white/90 mt-6 text-lg md:text-xl font-light">Não desperdice o trabalho legado. Avance com boas práticas e flexibilidade estrutural.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 3 -->
+<div class="flex-none w-full snap-center">
+<div class="relative h-[600px] rounded-3xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Digital interface showing high-resolution gallery of historical photographs and digital media assets in a modern web view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMkn6otJQWPNrb82XCAof6k8WAfxnvWoo7KwFL73mjafStATVuVrZEvWWyxNF7d07ueL2DJFXQUwnZW8uzKQSXT5lbzRBrGGYG56jQtLb3SraPYuGNk3hqZyl8VLkGehDoPJbmsJiEv4QPUllybASDW43QoChO6EjBFsICamNXJljQvCEF10k3-IXt5yOXRqmMt5RrUsXPBIiPuXAdIJisIjdKg_9PGCgJcO0QKD0rWm1me-y-UOxIw6lLS_d1IVsZ1roAA9DLsNcD"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
+<div class="max-w-2xl">
+<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">OBJETOS DIGITAIS</span>
+<h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight">Visualize o acervo digital.</h2>
+<p class="text-white/90 mt-6 text-lg md:text-xl font-light">Adicione objetos digitais, sejam eles imagéticas, sonoras ou audiovisuais em alta performance.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 4 -->
+<div class="flex-none w-full snap-center">
+<div class="relative h-[600px] rounded-3xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Minimalist architectural server room with clean teal lighting representing modern IT infrastructure and easy deployment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0OQmGteYH80VSXJc-kRl56RrvZ3XGcLNxaQ5dfSosP_052FxL_Ka2vE3_m4wJx81dktddkknUDsx-AgvbGDKW3Fb-J3pnSS2-NqaBjg2_TqQ3DrtRiAivrJJ6ailJdnYx-s1tjSIqlKRtCi6kHC-PVQ2jYS1m16ZFJjkLbJ-jqD8ARFptS50RhJkx8ALNvr4KZH5EyWjNoOnKC57F_5QwPKVKwEW30QO-tPWD7CnCF2SgpkLRGUHlgoUP3HZQHLpDxqJzx0ccZY6w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent flex items-end p-12">
+<div class="max-w-2xl">
+<span class="inline-block px-4 py-1 bg-primary text-white rounded-full text-xs font-bold tracking-widest uppercase mb-4">FÁCIL IMPLANTAÇÃO</span>
+<h2 class="text-white text-4xl md:text-6xl font-headline font-extrabold tracking-tight leading-tight">Uma instalação, muitas instituições.</h2>
+<p class="text-white/90 mt-6 text-lg md:text-xl font-light">Cadastre diversos setores e empodere equipes autônomas em uma única infraestrutura centralizada.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Right Arrow -->
+<button class="carousel-btn carousel-btn-next absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 hover:bg-white transition-all shadow-md flex items-center justify-center text-primary hover:text-primary/80 translate-x-6 md:translate-x-20 active:scale-95" aria-label="Próximo slide">
+<span class="material-symbols-outlined text-2xl">chevron_right</span>
+</button>
+
+<!-- Carousel Indicators (Dots) -->
+<div class="flex justify-center gap-2 mt-8">
+<button class="carousel-dot carousel-dot-0 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 1" data-slide="0"></button>
+<button class="carousel-dot carousel-dot-1 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 2" data-slide="1"></button>
+<button class="carousel-dot carousel-dot-2 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 3" data-slide="2"></button>
+<button class="carousel-dot carousel-dot-3 w-2.5 h-2.5 rounded-full bg-primary/40 hover:bg-primary/60 transition-all active:scale-110" aria-label="Ir para slide 4" data-slide="3"></button>
+</div>
+</div>
+</section>
+<!-- Nossa Atuação Section -->
+<section class="py-32 bg-surface-container-low" id="atuacao">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<div class="lg:col-span-4 sticky top-32 h-fit">
+<h2 class="text-5xl font-headline font-extrabold tracking-tight text-on-surface mb-6">Nossa Atuação</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8">O Farinha foi construído sobre oito pilares fundamentais que garantem a integridade e a acessibilidade da memória institucional e histórica.</p>
+<div class="rounded-2xl overflow-hidden shadow-2xl">
+<img class="w-full h-auto" data-alt="Close up of hands interacting with a clean digital tablet interface displaying archival records and map data" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-aHKbxsQNgQz99j5K6U9MUA-KybYTdIgwyV-0eSCAjXtg7yF_4c3o4dhjRaZh38mGwsu2DmBxmMAF4wbP9h3mvtnzDWqMyF-2Ariv9cPdsAD9pUzCK6d6ZPQaNL4l8p12YK-3YRigHUpJunfu3yK4RLO9alqI6ZM6Xti7FOOvtL3UFWB6btJ4b9HdI0hIvnJAPMj8pSmeOzrbZrQHn1pz_BYJ9WsB6XH1EP3JGaQ5vhvPrpUvnKioxK6CfKcoNAEvY6HPR18CqDuR"/>
+</div>
+</div>
+<div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Pillars -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h3 class="font-headline font-bold text-xl mb-3">Fácil Implantação</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Processo de instalação otimizado e documentado para rápida entrada em operação.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined">domain</span>
+</div>
+<h3 class="font-headline font-bold text-xl mb-3">Multi-institucional</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Gerencie diversas instituições dentro da mesma plataforma com isolamento e segurança.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined">account_tree</span>
+</div>
+<h3 class="font-headline font-bold text-xl mb-3">Multisetorial</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Estrutura preparada para refletir a complexidade organográﬁca de qualquer organização.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<h3 class="font-headline font-bold text-xl mb-3">Multiacervos</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Diferentes tipologias documentais coexistindo em um ecossistema digital unificado.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<h3 class="font-headline font-bold text-xl mb-3">Equipes Autônomas</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Permissões granulares que permitem que cada equipe gerencie seu próprio fluxo de trabalho.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined">map</span>
+</div>
+<h3 class="font-headline font-bold text-xl mb-3">Mapa</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Georreferenciamento de acervos para visualização espacial de dados históricos.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined">search</span>
+</div>
+<h3 class="font-headline font-bold text-xl mb-3">Encontre Tudo</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Sistema de busca avançado com filtros precisos para localização imediata de itens.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl hover:bg-white transition-all duration-300">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined">code</span>
+</div>
+<h3 class="font-headline font-bold text-xl mb-3">Código-Fonte Livre</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Software livre de verdade, garantindo soberania digital e sustentabilidade técnica.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Objects Section (Bento Grid) -->
+<section class="py-32 bg-surface" id="objetos">
+<div class="max-w-7xl mx-auto px-8">
+<div class="mb-16">
+<h2 class="text-4xl font-headline font-bold text-on-surface">Objetos Digitais</h2>
+<p class="text-on-surface-variant mt-4 max-w-xl">A memória não é apenas texto. O Farinha suporta nativamente a preservação e exibição de múltiplos formatos.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
+<div class="md:col-span-2 bg-primary rounded-3xl p-12 text-white relative overflow-hidden flex flex-col justify-end">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+<span class="material-symbols-outlined text-6xl mb-6">photo_library</span>
+<h3 class="text-3xl font-headline font-bold mb-4">Galeria de Imagens</h3>
+<p class="text-white/80 max-w-md">Suporte a fotografias de alta resolução com metadados técnicos integrados.</p>
+</div>
+<div class="bg-surface-container-high rounded-3xl p-8 flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl text-primary">audiotrack</span>
+<div>
+<h3 class="text-xl font-headline font-bold mb-2">Acervos Sonoros</h3>
+<p class="text-on-surface-variant text-sm">Player integrado para arquivos de áudio, entrevistas e registros históricos.</p>
+</div>
+</div>
+<div class="bg-surface-container-highest rounded-3xl p-8 flex flex-col justify-between">
+<span class="material-symbols-outlined text-4xl text-primary">movie</span>
+<div>
+<h3 class="text-xl font-headline font-bold mb-2">Audiovisuais</h3>
+<p class="text-on-surface-variant text-sm">Gerenciamento de filmes e registros em vídeo com visualização em tempo real.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Equipe Section -->
+<section class="py-32 bg-surface-container-low" id="equipe">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-20">
+<h2 class="text-4xl font-headline font-bold text-on-surface">Nossa Equipe</h2>
+<p class="text-on-surface-variant mt-4">Núcleo de desenvolvimento dedicado a criar a nova geração de plataforma para instituições de custódia.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Member 1 - Ricardo -->
+<div class="bg-white rounded-2xl p-8 flex flex-col h-full shadow-sm">
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">Com formação em Arquivologia e Ciência da Informação e experiência em plataformas digitais e tecnologias da informação aplicadas a arquivos permanentes e memoriais. Atua como Chefe do Escritório Regional Nordeste do Arquivo Nacional, cedido pela UFBA, onde é Arquivista. Membro do Laboratório de Humanidades Digitais (LABHDUFBA) e do Raul Hacker Club.</p>
+<div class="flex items-center gap-4">
+<span class="text-primary text-2xl">❝</span>
+<div class="flex-grow">
+<div class="relative w-16 h-16 rounded-full overflow-hidden border-2 border-surface shadow-sm">
+<img class="w-full h-full object-cover" src="./img/ricardo.png" data-alt="Portrait of Ricardo"/>
+</div>
+</div>
+<div class="text-right">
+<h4 class="font-headline font-bold text-sm">RICARDO<br/>SODRÉ<br/>ANDRADE</h4>
+<p class="text-primary text-xs font-medium mt-1">Coordenador</p>
+</div>
+</div>
+</div>
+
+<!-- Member 2 - Pablo -->
+<div class="bg-white rounded-2xl p-8 flex flex-col h-full shadow-sm">
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">Desenvolvedor com mais de 10 anos de experiência em aplicações web e móveis, atuando em diversas áreas, linguagens e frameworks. Atualmente, estuda cibersegurança, impressão e modelagem 3D, eletrônica e robótica. Membro do Raul Hacker Club.</p>
+<div class="flex items-center gap-4">
+<span class="text-primary text-2xl">❝</span>
+<div class="flex-grow">
+<div class="relative w-16 h-16 rounded-full overflow-hidden border-2 border-surface shadow-sm">
+<img class="w-full h-full object-cover" src="./img/pablo.png" data-alt="Portrait of Pablo"/>
+</div>
+</div>
+<div class="text-right">
+<h4 class="font-headline font-bold text-sm">PABLO<br/>SOARES</h4>
+<p class="text-primary text-xs font-medium mt-1">Desenvolvedor Sênior</p>
+</div>
+</div>
+</div>
+
+<!-- Member 3 - Beatriz -->
+<div class="bg-white rounded-2xl p-8 flex flex-col h-full shadow-sm">
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">Graduada no Bacharelado Interdisciplinar em Ciência e Tecnologia pela UFBA, Especialista em Engenharia de Software pela FASUL. Atualmente é Analista em TI na DATAPREV.</p>
+<div class="flex items-center gap-4">
+<span class="text-primary text-2xl">❝</span>
+<div class="flex-grow">
+<div class="relative w-16 h-16 rounded-full overflow-hidden border-2 border-surface shadow-sm">
+<img class="w-full h-full object-cover" src="./img/beatriz.png" data-alt="Portrait of Beatriz"/>
+</div>
+</div>
+<div class="text-right">
+<h4 class="font-headline font-bold text-sm">BEATRIZ<br/>AZEVEDO</h4>
+<p class="text-primary text-xs font-medium mt-1">Desenvolvedora</p>
+</div>
+</div>
+</div>
+
+<!-- Member 4 - Cristian -->
+<div class="bg-white rounded-2xl p-8 flex flex-col h-full shadow-sm">
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">Gerente de projetos e arquiteto de soluções. Graduado em Análise de Sistemas e Tecnólogo em desenvolvimento de sistemas, possui especialização em Computação em Nuvem. É um entusiasta em implementação de soluções baseadas em software livre, impressão 3D da cultura Maker.</p>
+<div class="flex items-center gap-4">
+<span class="text-primary text-2xl">❝</span>
+<div class="flex-grow">
+<div class="relative w-16 h-16 rounded-full overflow-hidden border-2 border-surface shadow-sm">
+<img class="w-full h-full object-cover" src="./img/cristian.png" data-alt="Portrait of Cristian"/>
+</div>
+</div>
+<div class="text-right">
+<h4 class="font-headline font-bold text-sm">CRISTIAN<br/>PRIVAT</h4>
+<p class="text-primary text-xs font-medium mt-1">Gerente de Projeto</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA / Contato Section -->
+<section class="py-32 bg-surface" id="contato">
+<div class="max-w-5xl mx-auto px-8">
+<div class="hero-gradient rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl">
+<div class="relative z-10">
+<h2 class="text-4xl md:text-5xl font-headline font-extrabold mb-8 tracking-tight">Vamos começar?</h2>
+<p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">O Farinha é um software livre. Pessoas e instituições podem começar hoje mesmo a gerenciar seus acervos com Farinha, basta acessar nossa documentação!</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+<button class="bg-surface-container-lowest text-primary px-10 py-4 rounded-full font-headline font-bold hover:bg-surface transition-all shadow-sm">Como instalar</button>
+<button class="bg-white/10 border border-white/20 backdrop-blur-sm text-white px-10 py-4 rounded-full font-headline font-bold hover:bg-white/20 transition-all">Como configurar</button>
+</div>
+<p class="text-white/80 text-lg mb-6 max-w-2xl mx-auto">Quer ajuda? Contrate serviços de instalação, configuração ou treinamento!</p>
+<div class="flex justify-center">
+<button class="bg-white/10 border border-white/20 backdrop-blur-sm text-white px-10 py-4 rounded-full font-headline font-bold hover:bg-white/20 transition-all">Quero saber mais</button>
+</div>
+</div>
+<!-- Aesthetic shape decoration -->
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary-fixed-dim/20 rounded-full blur-3xl"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 w-full py-12 px-8 mt-24">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-lg font-black text-slate-900 dark:text-slate-100 font-headline uppercase">Farinha</div>
+<p class="font-body text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 text-center">
+                © 2024 Farinha. Free Software for Archive Management.
+            </p>
+<div class="flex gap-8">
+<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Privacidade</a>
+<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Termos</a>
+<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">Documentação</a>
+<a class="font-body text-xs uppercase tracking-widest text-slate-500 hover:text-cyan-500 hover:underline decoration-cyan-500/30 underline-offset-4 transition-all opacity-80 hover:opacity-100" href="#">GitHub</a>
+</div>
+</div>
+</footer>
+
+<script>
+    // Carousel functionality
+    const carousel = document.querySelector('.carousel-container');
+    if (carousel) {
+        let currentSlide = 0;
+        const slides = carousel.children.length;
+        let autoScrollInterval;
+        let isUserInteracting = false;
+
+        // Function to scroll to a specific slide
+        function scrollToSlide(slideIndex) {
+            currentSlide = slideIndex % slides;
+            carousel.scrollTo({
+                left: carousel.offsetWidth * currentSlide,
+                behavior: 'smooth'
+            });
+            updateDots();
+        }
+
+        // Function to go to next slide
+        function nextSlide() {
+            scrollToSlide(currentSlide + 1);
+            isUserInteracting = true;
+            resetAutoScroll();
+        }
+
+        // Function to go to previous slide
+        function prevSlide() {
+            scrollToSlide(currentSlide - 1 < 0 ? slides - 1 : currentSlide - 1);
+            isUserInteracting = true;
+            resetAutoScroll();
+        }
+
+        // Update active dot
+        function updateDots() {
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Reset auto-scroll timer
+        function resetAutoScroll() {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setTimeout(startAutoScroll, 3000); // Resume after 3s of no interaction
+        }
+
+        // Auto-scroll function
+        function autoScroll() {
+            currentSlide = (currentSlide + 1) % slides;
+            carousel.scrollTo({
+                left: carousel.offsetWidth * currentSlide,
+                behavior: 'smooth'
+            });
+            updateDots();
+        }
+
+        // Start auto-scroll
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(autoScroll, 8000);
+            isUserInteracting = false;
+        }
+
+        // Arrow button handlers
+        const nextBtn = document.querySelector('.carousel-btn-next');
+        const prevBtn = document.querySelector('.carousel-btn-prev');
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', nextSlide);
+        }
+        if (prevBtn) {
+            prevBtn.addEventListener('click', prevSlide);
+        }
+
+        // Dot button handlers
+        document.querySelectorAll('.carousel-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                scrollToSlide(slideIndex);
+                isUserInteracting = true;
+                resetAutoScroll();
+            });
+        });
+
+        // Update dots on scroll
+        carousel.addEventListener('scroll', () => {
+            const scrollPosition = carousel.scrollLeft;
+            const slideWidth = carousel.offsetWidth;
+            currentSlide = Math.round(scrollPosition / slideWidth);
+            updateDots();
+        });
+
+        // Initial setup
+        updateDots();
+        startAutoScroll();
+    }
+
+    // Smooth scroll to section on nav click
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Add active state to nav links based on scroll position
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = document.querySelectorAll('section[id]');
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+            link.classList.remove('text-cyan-600', 'dark:text-cyan-400', 'border-b-2', 'border-cyan-500/20');
+            link.classList.add('text-slate-600', 'dark:text-slate-400');
+
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.remove('text-slate-600', 'dark:text-slate-400');
+                link.classList.add('text-cyan-600', 'dark:text-cyan-400', 'border-b-2', 'border-cyan-500/20');
+            }
+        });
+    });
+
+    // Button interactions
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', function() {
+            // Visual feedback
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 100);
+
+            // Log button clicks for analytics (optional)
+            console.log('Button clicked:', this.textContent);
+        });
+    });
+
+    // Image lazy loading support
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '1';
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img').forEach(img => {
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
+            imageObserver.observe(img);
+        });
+    }
+
+    // Mobile menu toggle (for future mobile nav implementation)
+    const mobileMenuButton = document.querySelector('[data-mobile-menu]');
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', function() {
+            const menu = this.nextElementSibling;
+            menu.classList.toggle('hidden');
+        });
+    }
+
+    // Form validation helper (for future contact forms)
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+// Expose globally for button handlers
+    window.appHelpers = {
+        validateEmail,
+        goToSection: (id) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    };
+</script>
+</body>
+</html>
